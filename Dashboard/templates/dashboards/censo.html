@@ -1,0 +1,63 @@
+{% extends "template_base.html" %}
+
+{% block title %}Seleccion de Censo{% endblock %}
+
+{% block content %}
+
+
+<form method="POST" class="m-2">
+  {% csrf_token %}
+  <div class="mb-3 col">
+    <div class="mb-3">
+      <label for="anio" class="form-label"> Ingrese el Año del Censo</label>
+      <input type="number" name="anio" class="form-control" id="anio" value={{anioSeleccionado}} max="2025" min="2000" style="max-width: 300px;">
+    </div>
+    <button type="submit" class="btn btn-success">Seleccionar</button>
+  </div>
+</form>
+
+<section class="vh-100 about" id="about">
+  <div class="d-flex justify-content-center">
+  <table class="table mt-5">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>    
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row"></th>
+        <td><a href="{% url 'lista_Discapacidad' idCenso=idCenso %}?anio={{ anioSeleccionado }}"><i class="fa fa-plus-circle fa-2x" style="color: #3cbb67;" aria-hidden="true"></i></a></td>
+        <td><a href="{% url 'lista_Discapacidad' idCenso=idCenso %}?anio={{ anioSeleccionado }}" style="text-decoration: none;">Ingresar Estadísticas de tipo de discapacidad<a></td>      
+      </tr>
+      <tr>
+        <th scope="row"></th>
+        <td><a href="{% url 'lista_SectorEconomico' idCenso=idCenso %}?anio={{ anioSeleccionado }}"><i class="fa fa-plus-circle fa-2x" style="color: #3cbb67;" aria-hidden="true"></i></a></td>
+        <td><a href="{% url 'lista_SectorEconomico' idCenso=idCenso %}?anio={{ anioSeleccionado }}" style="text-decoration: none;">Ingresar Estadísticas por sectores económicos<a></td>      
+      </tr>
+      <tr>
+        <th scope="row"></th>
+        <td><a href="{% url 'lista_Rubro' idCenso=idCenso %}?anio={{ anioSeleccionado }}"><i class="fa fa-plus-circle fa-2x" style="color: #3cbb67;" aria-hidden="true"></i></a></td>
+        <td><a href="{% url 'lista_Rubro' idCenso=idCenso %}?anio={{ anioSeleccionado }}" style="text-decoration: none;">Ingresar Estadísticas por rubros<a></td>      
+      </tr>
+      <tr>
+        <th scope="row"></th>
+        <td><a href="{% url 'lista_RangoEdad' idCenso=idCenso %}?anio={{ anioSeleccionado }}"><i class="fa fa-plus-circle fa-2x" style="color: #3cbb67;" aria-hidden="true"></i></a></td>
+        <td><a href="{% url 'lista_RangoEdad' idCenso=idCenso %}?anio={{ anioSeleccionado }}" style="text-decoration: none;">Ingresar Estadísticas por rangos de edad<a></td>      
+      </tr>
+      <tr>
+        <th scope="row"></th>
+        <td><a href="{% url 'lista_Categoria' idCenso=idCenso %}?anio={{ anioSeleccionado }}"><i class="fa fa-plus-circle fa-2x" style="color: #3cbb67;" aria-hidden="true"></i></a></td>
+        <td><a href="{% url 'lista_Categoria' idCenso=idCenso %}?anio={{ anioSeleccionado }}" style="text-decoration: none;">Ingresar Estadísticas por categoria ocupacional<a></td>      
+      </tr>
+      <tr>
+        <th scope="row"></th>
+        <td><a href="{% url 'eliminar' idCenso=idCenso %}?anio={{ anioSeleccionado }}"><i class="fa-solid fa-circle-xmark fa-2x" style="color: red;" aria-hidden="true"></i></a></td>
+        <td><a href="{% url 'eliminar' idCenso=idCenso %}?anio={{ anioSeleccionado }}" style="text-decoration: none;">Eliminar<a></td>      
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+{% endblock %}

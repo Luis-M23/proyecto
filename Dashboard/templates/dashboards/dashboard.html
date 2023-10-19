@@ -1,0 +1,53 @@
+{% extends "template_base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<form method="POST" class="row m-2">
+    {% csrf_token %}
+    <div class="col">
+      <select name="censo" class="form-control" aria-placeholder="Seleccione el Año">
+        <option value="0">Seleccione Año...</option>
+        {% for item in lista %}
+        <option value={{item.idCenso}}>{{item.anio}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-success">Selecccionar</button>
+    </div>
+</form>
+
+{% if disc is not None %}
+<div id="graph-container">{{ disc|safe }}</div>
+{% endif %}
+
+{% if cats is not None %}
+<div id="graph-container">{{ cats|safe }}</div>
+{% endif %}
+
+{% if edades is not None %}
+<div id="graph-container">{{ edades|safe }}</div>
+{% endif %}
+
+{% if rubros is not None %}
+<div id="graph-container">{{ rubros|safe }}</div>
+{% endif %}
+
+{% if sectores is not None %}
+<div id="graph-container">{{ sectores|safe }}</div>
+{% endif %}
+
+
+{% if disc is None and cats is None and edades is None and rubros is None and sectores is None %}
+<div class="error-page mb-5">
+  <div class="error-page__header">
+    {% load static %}
+    <img class="error-page__header-image" src="{% static 'images/Graficos.png' %}">
+    <h1 class="error-page__title nolinks">No hay datos para mostrar para este Año.</h1>
+    <p class="error-page__message">Porfavor seleccione un año que si tenga datos</p>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}

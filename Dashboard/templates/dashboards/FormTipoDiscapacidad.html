@@ -1,0 +1,36 @@
+{% extends "template_base.html" %}
+
+{% block title %}Tipos Discaoacidad{% endblock %}
+
+{% block content %}
+
+<section class="d-flex flex-column justify-content-center about" id="about">
+  <h2>Tipo Discapacidad</h2>
+<label for="exampleInputEmail1" class="form-label">Año censo</label>
+<input type="number" value={{anio}} disabled>
+  <form class="row" method="POST">{% csrf_token %}
+    <div class="col m-2">
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Ingrese tipo de Discapacidad</label>
+        <input type="text" class="form-control" name="tipoDis" placeholder="Discapacidad">
+      </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Cantidad Hombres</label>
+            <input type="number" class="form-control" name="canHombres" min="1">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Cantidad Mujeres</label>
+            <input type="number" class="form-control" name="canMujeres" min="1">
+          </div>
+    </div>
+    <div class="col mt-5 m-4">
+        <button type="submit" class="btn btn-success mt-5 mb-3">Guardar</button>
+        <br>
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+    </div>
+    <div class="form-group">
+      <a href="/includata/dashboards/censo/" type="submit" class="btn btn-dark">Regresar</a>
+    </div>
+  </form>
+</section>
+{% endblock %}

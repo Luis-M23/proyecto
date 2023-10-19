@@ -1,0 +1,39 @@
+
+{% extends "template_base.html" %} {% block title %}Login{% endblock %} 
+{% block content %}
+
+<div class="wrapper">
+  <div class="logo">
+    {% load static %}
+    <img src="{% static 'images/login.png' %}" alt="" />
+  </div>
+  <form class="p-3 mt-3" method="post">
+    {% csrf_token %}
+    <div class="form-field d-flex align-items-center">
+      <span class="far fa-user"></span>
+      {{ form.username }}
+    </div>
+    <div class="form-field d-flex align-items-center">
+      <span class="fas fa-key"></span>
+      {{ form.password }}
+    </div>
+    <button type="submit" class="btn mt-3">Login</button>
+    <div class="m-2" style="color: red;">
+      <p>{{ form.non_field_errors }}</p>
+    </div>
+    
+  </form>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var fields = document.getElementsByTagName("input");
+
+    for (var i = 0; i < fields.length; i++) {
+      fields[i].setAttribute("readonly", "readonly");
+      fields[i].addEventListener("focus", function() {
+        this.removeAttribute("readonly");
+      });
+    }
+  });
+</script>
+{% endblock %}
